@@ -2,218 +2,163 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>El Universo Infinito de Carla 🌻🌌💖</title>
     <style>
         :root {
             --glow-sun: #ffd700;
             --text-color: #fff9c4;
-            --orbit-line-color: rgba(255, 255, 255, 0.12);
-            --aura-frase: 0 0 25px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.6);
-            --aura-planeta: 0 0 60px rgba(255, 255, 255, 0.6), 0 0 120px rgba(255, 255, 255, 0.2);
+            --orbit-line-color: rgba(255, 255, 255, 0.1);
+            --aura-frase: 0 0 15px rgba(255, 215, 0, 0.8);
             --font-main: 'Georgia', serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; backface-visibility: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; backface-visibility: hidden; touch-action: manipulation; }
 
         body {
-            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
-            color: white; font-family: var(--font-main);
+            background: #000; color: white; font-family: var(--font-main);
             height: 100vh; width: 100vw; overflow: hidden;
             display: flex; justify-content: center; align-items: center;
-            perspective: 3000px;
+            perspective: 2000px;
         }
 
-        /* --- 1. ESTRELLAS FUGACES --- */
+        /* --- ESTRELLAS FUGACES --- */
         .shooting-star {
-            position: absolute; width: 3px; height: 3px;
-            background: linear-gradient(90deg, #fff, transparent);
-            box-shadow: 0 0 20px #fff; border-radius: 50%;
-            pointer-events: none; z-index: 1;
-            animation: shoot 3s linear forwards;
+            position: absolute; width: 2px; height: 2px;
+            background: #fff; box-shadow: 0 0 10px #fff; border-radius: 50%;
+            pointer-events: none; z-index: 1; animation: shoot 3s linear forwards;
         }
         @keyframes shoot {
-            0% { transform: translate3d(-200px, -200px, 0) rotate(45deg) scale(0); opacity: 0; }
-            10% { opacity: 1; scale: 1.5; }
-            30% { transform: translate3d(600px, 600px, 0) rotate(45deg) scale(0); opacity: 0; }
+            0% { transform: translate3d(-100px, -100px, 0) rotate(45deg) scale(0); opacity: 0; }
+            10% { opacity: 1; scale: 1; }
+            30% { transform: translate3d(400px, 400px, 0) rotate(45deg); opacity: 0; }
             100% { opacity: 0; }
         }
 
-        /* --- 2. ACCESO DEL OSITO --- */
+        /* --- ACCESO --- */
         #pantalla-acceso {
             position: fixed; inset: 0; background: #000; z-index: 10000;
             display: flex; justify-content: center; align-items: center; transition: 1.5s;
         }
         .login-box {
-            background: rgba(15, 15, 15, 0.95); padding: 60px; border-radius: 50px;
-            border: 3px solid gold; text-align: center; box-shadow: 0 0 80px rgba(255, 215, 0, 0.3);
+            background: rgba(10, 10, 10, 0.9); padding: 30px; border-radius: 30px;
+            border: 2px solid gold; text-align: center; width: 85%; max-width: 400px;
         }
-        .osito-frame { font-size: 6.5rem; height: 110px; margin-bottom: 25px; display: flex; justify-content: center; }
+        .osito-frame { font-size: 4rem; margin-bottom: 15px; }
         .ojos-cerrados { display: none; }
-        .login-box h1 { color: gold; font-size: 2.8rem; margin-bottom: 30px; text-shadow: 0 0 20px gold; }
-        .login-box input { background: transparent; border: 2px solid gold; padding: 18px; border-radius: 20px; color: white; font-size: 1.5rem; text-align: center; width: 300px; outline: none; }
-        .login-box button { margin-top: 35px; padding: 18px 50px; background: gold; color: black; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 1.2rem; }
+        .login-box h1 { color: gold; font-size: 1.8rem; margin-bottom: 20px; }
+        .login-box input { background: transparent; border: 2px solid gold; padding: 12px; border-radius: 15px; color: white; font-size: 1.2rem; text-align: center; width: 100%; outline: none; }
+        .login-box button { margin-top: 20px; padding: 12px 30px; background: gold; color: black; border: none; border-radius: 25px; font-weight: bold; width: 100%; }
 
-        /* --- 3. PORTADA Y JARDÍN RECUPERADO --- */
+        /* --- PORTADA Y JARDÍN --- */
         #portada {
             position: fixed; inset: 0; background: #000; z-index: 9000;
             display: none; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; transition: 2s;
+            opacity: 0; transition: 2s; padding: 20px;
         }
-        .stars-carta { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-        .corazon-latido {
-            position: absolute; animation: heartBeat 2.5s infinite alternate;
-            filter: drop-shadow(0 0 20px red); z-index: 2; font-size: 25px;
-        }
-        @keyframes heartBeat { to { transform: scale(1.4); opacity: 0.9; } }
-
+        .stars-carta { position: absolute; inset: 0; pointer-events: none; }
         .carta-contenedor {
-            background: #fff9c4; padding: 40px; border-radius: 40px;
-            border: 10px solid #ffd700; max-width: 650px; text-align: center;
-            color: #222; box-shadow: 0 0 120px rgba(255, 215, 0, 0.7);
-            transform: translateY(-80px) translateZ(100px); z-index: 10;
+            background: #fff9c4; padding: 25px; border-radius: 30px;
+            border: 6px solid #ffd700; width: 100%; max-width: 500px; text-align: center;
+            color: #222; box-shadow: 0 0 50px rgba(255, 215, 0, 0.5); z-index: 10;
         }
-        .carta-contenedor h2 { font-size: 2.3rem; color: #b8860b; margin-bottom: 20px; font-family: 'Brush Script MT', cursive; }
-        .carta-contenedor p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 25px; text-align: justify; font-style: italic; }
+        .carta-contenedor h2 { font-size: 1.5rem; color: #b8860b; margin-bottom: 15px; }
+        .carta-contenedor p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
 
         .jardin-inferior {
-            position: absolute; bottom: 0; width: 100%; height: 50vh;
+            position: absolute; bottom: 0; width: 100%; height: 30vh;
             display: flex; justify-content: space-around; align-items: flex-end;
-            padding-bottom: 30px; z-index: 5; pointer-events: none;
+            padding-bottom: 10px; z-index: 5; pointer-events: none;
         }
-        .flor-jardin { font-size: 5.5rem; animation: viento 4s infinite ease-in-out alternate; filter: drop-shadow(0 0 30px gold); }
-        @keyframes viento { from { transform: rotate(-10deg); } to { transform: rotate(10deg) translateY(-15px); } }
+        .flor-jardin { font-size: 2.5rem; animation: viento 4s infinite ease-in-out alternate; }
+        @keyframes viento { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
 
-        /* --- 4. SUBTÍTULOS Y CAJA DE TEXTO (AJUSTADOS) --- */
+        /* --- SUBTÍTULOS Y TEXTO (PARA CELULAR) --- */
         #subtitulos {
-            position: fixed;
-            bottom: 160px; /* Subido para separarlo de la caja de texto */
-            width: 100%; text-align: center;
-            font-size: 2rem; color: #fff; text-shadow: 0 0 20px #000, 0 0 15px gold;
-            z-index: 8000; transition: opacity 0.5s ease; font-style: italic; font-weight: bold;
-            opacity: 0; pointer-events: none;
+            position: fixed; bottom: 140px; width: 90%; left: 5%; text-align: center;
+            font-size: 1.1rem; color: #fff; text-shadow: 0 0 10px #000;
+            z-index: 8000; opacity: 0; transition: 0.5s; font-style: italic;
         }
 
         .caja-texto {
-            position: fixed;
-            bottom: 50px; /* Mantenido abajo */
-            left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.9); border: 3px solid gold; padding: 25px 50px;
-            border-radius: 60px; color: var(--text-color); font-size: 1.8rem;
-            opacity: 0; transition: 1s; z-index: 5000; box-shadow: 0 0 40px gold; text-align: center;
+            position: fixed; bottom: 40px; left: 5%; width: 90%;
+            background: rgba(0,0,0,0.85); border: 2px solid gold; padding: 15px;
+            border-radius: 30px; color: var(--text-color); font-size: 1rem;
+            opacity: 0; transition: 1s; z-index: 5000; text-align: center;
         }
 
-        /* --- 5. UNIVERSO Y PLANETAS ESFÉRICOS --- */
+        /* --- UNIVERSO --- */
         #titulo-universo {
-            position: fixed; top: 50px; width: 100%; text-align: center;
-            font-size: 4.5rem; color: gold; z-index: 100; text-shadow: 0 0 50px rgba(255,215,0,1);
-            opacity: 0; transition: 3s; pointer-events: none; font-weight: 900;
+            position: fixed; top: 30px; width: 100%; text-align: center;
+            font-size: 1.5rem; color: gold; z-index: 100; text-shadow: 0 0 20px gold;
+            opacity: 0; transition: 3s; pointer-events: none;
         }
 
         #main-container { width: 100%; height: 100%; opacity: 0; transition: 3s; transform-style: preserve-3d; }
-        .universo-canvas { position: absolute; top: 50%; left: 50%; transform-style: preserve-3d; will-change: transform; }
+        .universo-canvas { position: absolute; top: 50%; left: 50%; transform-style: preserve-3d; }
 
         .sol-core {
-            width: 240px; height: 240px; border-radius: 50%;
-            background: radial-gradient(circle, #fff, #ffeb3b 30%, #ff9800 60%, #f44336 100%);
-            box-shadow: 0 0 150px 50px #fff, 0 0 300px 100px rgba(255, 150, 0, 0.8);
-            position: absolute; transform: translate(-50%, -50%); cursor: pointer; z-index: 20;
+            width: 100px; height: 100px; border-radius: 50%;
+            background: radial-gradient(circle, #fff, #ffeb3b 40%, #ff9800 100%);
+            box-shadow: 0 0 60px 20px rgba(255, 200, 0, 0.6);
+            position: absolute; transform: translate(-50%, -50%); z-index: 20;
         }
-        .anim-latido { animation: latido 1.2s infinite alternate; }
-        @keyframes latido { to { transform: translate(-50%, -50%) scale(1.15); } }
 
         .orbita-visual {
-            position: absolute; border: 1.5px solid var(--orbit-line-color);
+            position: absolute; border: 1px solid var(--orbit-line-color);
             border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            pointer-events: none; transform-style: preserve-3d;
+            pointer-events: none;
         }
         .astro-mover {
             position: absolute; top: 0; left: 0; transform-style: preserve-3d;
-            animation: rotarOrbita linear infinite; will-change: transform;
+            animation: rotarOrbita linear infinite;
         }
         @keyframes rotarOrbita {
             from { transform: rotate(0deg) translate3d(var(--dist), 0, 0) rotate(0deg); }
             to { transform: rotate(360deg) translate3d(var(--dist), 0, 0) rotate(-360deg); }
         }
 
-        .planeta-body {
-            border-radius: 50%; position: relative; cursor: pointer;
-            box-shadow: var(--aura-planeta); transform-style: preserve-3d;
-            filter: drop-shadow(0 0 25px rgba(255,255,255,0.6));
-        }
+        .planeta-body { border-radius: 50%; position: relative; box-shadow: 0 0 15px rgba(255,255,255,0.3); }
 
-        .luna-sistema { position: absolute; top: 50%; left: 50%; animation: rotarLuna 6s linear infinite; transform-style: preserve-3d; }
-        .luna-body { width: 18px; height: 18px; background: #eee; border-radius: 50%; box-shadow: 0 0 20px #fff; cursor: pointer; }
-        @keyframes rotarLuna { from { transform: rotate(0deg) translate3d(70px, 0, 0); } to { transform: rotate(360deg) translate3d(70px, 0, 0); } }
+        .luna-sistema { position: absolute; top: 50%; left: 50%; animation: rotarLuna 6s linear infinite; }
+        .luna-body { width: 8px; height: 8px; background: #eee; border-radius: 50%; }
+        @keyframes rotarLuna { from { transform: rotate(0deg) translate3d(25px, 0, 0); } to { transform: rotate(360deg) translate3d(25px, 0, 0); } }
 
-        #meteorito-gigante {
-            position: fixed; width: 200px; height: 200px;
-            background: radial-gradient(circle, #777, #333, transparent);
-            border-radius: 50%; z-index: -1; display: flex; justify-content: center; align-items: center;
-            text-align: center; padding: 30px; color: #fff; font-weight: bold; font-size: 0.95rem;
-            opacity: 0; pointer-events: none; box-shadow: inset 0 0 40px #000, 0 0 50px rgba(255,255,255,0.3);
-        }
-        #meteorito-gigante.vuelo { animation: flyBy 18s linear forwards; }
-        @keyframes flyBy {
-            0% { transform: translate3d(-40vw, -40vh, -200px) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; } 90% { opacity: 1; }
-            100% { transform: translate3d(140vw, 140vh, 200px) rotate(1080deg); opacity: 0; }
-        }
+        /* --- FLORES Y METEORITOS --- */
+        .flor-espacial { position: absolute; animation: rotarOrbita linear infinite; display: flex; flex-direction: column; align-items: center; }
+        .flor-icono { font-size: 1.2rem; filter: drop-shadow(0 0 10px gold); }
+        .frase-flotante, .label-planeta { color: gold; font-size: 0.6rem; text-shadow: 0 0 5px #000; white-space: nowrap; margin-bottom: 4px; }
 
-        /* --- 6. FLORES, ESTRELLAS, METEORITOS DENSOS --- */
-        .flor-espacial { position: absolute; transform-style: preserve-3d; animation: rotarOrbita linear infinite; display: flex; flex-direction: column; align-items: center; }
-        .flor-icono { font-size: 2.5rem; filter: drop-shadow(0 0 25px gold); }
-        .frase-flotante, .label-planeta { color: gold; font-size: 1rem; font-weight: bold; text-shadow: var(--aura-frase); white-space: nowrap; margin-bottom: 8px; }
+        .star { position: absolute; background: #fff; border-radius: 50%; animation: pulso var(--t) infinite alternate; }
+        @keyframes pulso { 0% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        .star { position: absolute; background: #fff; border-radius: 50%; animation: pulso var(--t) infinite alternate; filter: blur(0.3px) drop-shadow(0 0 8px white); }
-        @keyframes pulso { 0% { opacity: 0.2; transform: scale(0.7); } 100% { opacity: 1; transform: scale(1.4); } }
-
-        .meteorito-cinturon { position: absolute; background: #888; border-radius: 50%; animation: rotarOrbita linear infinite; }
-
-        /* --- 7. FOTOS POLAROIDS RECUPERADAS --- */
         .foto-polaroid {
-            position: fixed; width: 280px; background: #fff; padding: 15px 15px 60px 15px;
-            box-shadow: 0 0 50px gold; opacity: 0; transition: 1.5s; z-index: 4000;
-            pointer-events: none; transform: scale(0.5); will-change: transform, opacity;
+            position: fixed; width: 180px; background: #fff; padding: 8px 8px 30px 8px;
+            box-shadow: 0 0 30px gold; opacity: 0; transition: 1.5s; z-index: 4000;
+            pointer-events: none; transform: scale(0.5);
         }
-        .foto-polaroid img { width: 100%; display: block; border: 1px solid #ddd; }
+        .foto-polaroid img { width: 100%; display: block; }
         .foto-polaroid.active { opacity: 1; transform: rotate(var(--r)) scale(1); }
 
-        /* --- NUEVO: LLUVIA DE CORAZONES CON TEXTO TE AMO --- */
         .corazon-caida {
-            position: fixed; top: -100px; z-index: 9999; pointer-events: none;
+            position: fixed; top: -50px; z-index: 9999; pointer-events: none;
             display: flex; flex-direction: column; align-items: center;
             animation: caer linear forwards;
         }
-        .corazon-caida-icono { font-size: 2.5rem; color: #ff3366; filter: drop-shadow(0 0 12px red); }
-        
-        /* Estilo para el texto Te Amo bajo el corazón */
-        .corazon-caida-texto {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 0 0 8px red;
-            margin-top: -3px; /* Ajustar posición bajo el corazón */
-            white-space: nowrap;
-        }
+        .corazon-caida-icono { font-size: 1.5rem; color: #ff3366; }
+        .corazon-caida-texto { font-size: 0.6rem; color: white; text-shadow: 0 0 5px red; }
 
-        @keyframes caer { 
-            0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 115vh, 0) rotate(720deg); opacity: 0; }
-        }
+        @keyframes caer { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(110vh); opacity: 0; } }
     </style>
 </head>
 <body>
 
     <div id="pantalla-acceso">
         <div class="login-box">
-            <div class="osito-frame">
-                <span class="ojos-abiertos">🐻</span>
-                <span class="ojos-cerrados">🙈</span>
-            </div>
-            <h1>Nuestro Universo Juntos</h1>
-            <input type="password" id="input-clave" placeholder="Contraseña mi niña..." oninput="manejarOsito()">
-            <br><button onclick="validar()">Entrar a nuestro Universo</button>
+            <div class="osito-frame"><span class="ojos-abiertos">🐻</span><span class="ojos-cerrados">🙈</span></div>
+            <h1>Mi Universo</h1>
+            <input type="password" id="input-clave" placeholder="Contraseña..." oninput="manejarOsito()">
+            <button onclick="validar()">Entrar</button>
         </div>
     </div>
 
@@ -221,56 +166,48 @@
         <div class="stars-carta" id="stars-carta-layer"></div>
         <div class="carta-contenedor">
             <h2>Para Mi Princesa Carla...🌻🌌</h2>
-            <p>Te conocí y cambiaste mi mundo por completo. Me enamoré de esos ojitos lindos tiernos, tus labios, tu carita suave y muy lindos... para qué negarte que me gusta todo de ti, hasta esos pequeños detalles yours, o hasta cuando te pones de mal humor conmigo, amo todo eso y nunca te dejaré de amar. Gracias por estar en mi vida, me enseñaste muchas cosas que no sabía y aunque tenemos discusiones tontas, te seguiré amando, nunca dudes de eso mi amor. Esta es para ti (Carla)He construido este universo solo para ti. Aquí el tiempo no pasa y las estrellas brillan con la misma intensidad con la que te amo. Eres el centro de mi gravedad y la luz de mis días oscuros. Navega entre nuestros recuerdos, cada planeta y cada flor tiene algo que decirte.</p>
-            <button onclick="iniciar()" id="btn-abrir" style="background:gold; padding:15px 40px; border:none; border-radius:30px; cursor:pointer; font-weight:bold;">Abrir Universo</button>
+            <p>Te conocí y cambiaste mi mundo por completo. Me enamoré de esos ojitos lindos tiernos, tus labios, tu carita suave... gracias por estar en mi vida. Esta es para ti. Descubre cada detalle.</p>
+            <button onclick="iniciar()" style="background:gold; padding:12px 25px; border:none; border-radius:20px; font-weight:bold;">Abrir Universo</button>
         </div>
         <div class="jardin-inferior" id="jardin"></div>
     </div>
 
-    <h1 id="titulo-universo">ERES MI UNIVERSO INFINITO</h1>
+    <h1 id="titulo-universo">ERES MI TODO</h1>
     <div id="subtitulos"></div>
-    <div id="meteorito-gigante">Nunca olvides que solo te amo a ti mi niña</div>
     <div class="caja-texto" id="caja"></div>
-    
     <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
     <div id="main-container">
         <div id="stars-layer"></div>
         <div id="shooting-stars-layer"></div>
         <div class="universo-canvas" id="canvas">
-            <div class="sol-core" id="sol" onclick="hablar('Mi amor, eres mi sol que brilla en mi oscuridad infinita. ☀️💖')"></div>
+            <div class="sol-core" id="sol" onclick="hablar('Mi amor, eres mi sol que brilla siempre. ☀️💖')"></div>
         </div>
     </div>
 
     <script>
-        const CLAVE = "te amo carla";
-        
-        // DATOS PLANETAS RECUPERADOS AL 100%
+        const CLAVE = "carla";
         const planetasData = [
-            { n: "Mercurio", d: 180, t: 25, v: 8, c: "#aaa", f: "Mi amor por ti es veloz como Mercurio 🚀💖" },
-            { n: "Venus", d: 260, t: 40, v: 12, c: "#e3bb76", f: "Eres más brillante que Venus ✨🌹" },
-            { n: "Tierra", d: 360, t: 50, v: 18, c: "#2e86de", f: "En todo este mundo no hay nadie como tu (Carla) 🌍❤️", l:true },
-            { n: "Marte", d: 480, t: 35, v: 22, c: "#f25c4c", f: "Mi pasión por ti es intensa como Marte 🔥💖" },
-            { n: "Júpiter", d: 650, t: 90, v: 35, c: "#d39c7e", f: "Carla, mi amor por ti es más grande que Júpiter 🌌💝" },
-            { n: "Saturno", d: 850, t: 75, v: 45, c: "#e2d2a2", f: "Te amo con un amor perfecto como los anillos de Saturno 🪐💖", a:true },
-            { n: "Urano", d: 1000, t: 55, v: 55, c: "#b2ebf2", f: "Le das la vuelta a mi mundo de la forma más hermosa ✨🙃💙" },
-            { n: "Neptuno", d: 1150, t: 55, v: 65, c: "#3f51b5", f: "Mi amor por ti es profundo y eterno como el océano🌊💖" },
-            { n: "Plutón", d: 1300, t: 20, v: 75, c: "#90a4ae", f: "Incluso en el rincón más lejano, te seguiría amando ❄️❤️" }
+            { n: "Mercurio", d: 80, t: 12, v: 8, c: "#aaa", f: "Veloz como Mercurio 🚀" },
+            { n: "Venus", d: 110, t: 18, v: 12, c: "#e3bb76", f: "Brillante como Venus ✨" },
+            { n: "Tierra", d: 150, t: 22, v: 18, c: "#2e86de", f: "Mi mundo eres tú 🌍❤️", l:true },
+            { n: "Marte", d: 200, t: 16, v: 22, c: "#f25c4c", f: "Pasión como Marte 🔥" },
+            { n: "Júpiter", d: 280, t: 40, v: 35, c: "#d39c7e", f: "Amor gigante 🌌" },
+            { n: "Saturno", d: 370, t: 32, v: 45, c: "#e2d2a2", f: "Amor perfecto 🪐", a:true },
+            { n: "Urano", d: 440, t: 24, v: 55, c: "#b2ebf2", f: "Me das la vuelta ✨" },
+            { n: "Neptuno", d: 500, t: 24, v: 65, c: "#3f51b5", f: "Amor profundo 🌊" }
         ];
 
-        // SUBTÍTULOS SINCRONIZADOS
         const guionSubtitulos = [
-            { t: 0, s: "" },
-            { t: 2, s: "Desde que te vi por primera vez..." },
-            { t: 6, s: "Supe que mi vida no volvería a ser igual." },
-            { t: 10, s: "Eres la dueña de cada uno de mis latidos," },
-            { t: 14, s: "y el universo entero que siempre soñé." },
-            { t: 18, s: "Te amo más de lo que las palabras pueden decir, Carla." },
-            { t: 25, s: "" }
+            { t: 2, s: "Desde que te vi..." },
+            { t: 6, s: "Supe que todo cambiaría." },
+            { t: 10, s: "Eres la dueña de mi corazón," },
+            { t: 14, s: "mi universo entero." },
+            { t: 18, s: "Te amo infinitamente, Carla." }
         ];
 
-        const frasesFlores = ["Te amo", "Mi niña", "Carla Linda", "Mi vida", "Mi sol", "Eres hermosa", "Siempre juntos", "Princesa", "Te adoro", "Eres arte", "Mi luz", "Ojos bellos"];
-        const iconosFlores = ["🌻", "🌷", "🌹", "🌼", "🌺", "🌸", "💖", "✨", "🌟"];
+        const frasesFlores = ["Te amo", "Mi vida", "Carla Linda", "Mi sol", "Princesa", "Siempre juntos"];
+        const iconosFlores = ["🌻", "🌹", "💖", "✨"];
 
         function manejarOsito() {
             const v = document.getElementById('input-clave').value;
@@ -278,15 +215,14 @@
             document.querySelector('.ojos-cerrados').style.display = v.length ? 'block' : 'none';
         }
 
-        // LÓGICA ESTRELLAS FUGACES (Ráfaga de 5 cada 3s)
         function lanzarRafagaEstrellas(contenedor) {
-            for(let i=0; i<5; i++) {
+            for(let i=0; i<3; i++) {
                 setTimeout(() => {
                     let s = document.createElement('div'); s.className = 'shooting-star';
-                    s.style.top = Math.random()*100+"vh"; s.style.left = Math.random()*100+"vw";
+                    s.style.top = Math.random()*80+"vh"; s.style.left = Math.random()*80+"vw";
                     contenedor.appendChild(s);
                     setTimeout(() => s.remove(), 3000);
-                }, i * 200);
+                }, i * 300);
             }
         }
 
@@ -296,83 +232,61 @@
                 setTimeout(() => {
                     document.getElementById('pantalla-acceso').style.display = 'none';
                     document.getElementById('portada').style.display = 'flex';
-                    
                     const layer = document.getElementById('stars-carta-layer');
-                    // 250 estrellas fijas en la carta
-                    for(let i=0; i<250; i++) {
+                    for(let i=0; i<100; i++) {
                         let s = document.createElement('div'); s.className = 'star';
-                        let sz = Math.random()*3; s.style.width = s.style.height = sz+"px";
+                        let sz = Math.random()*2; s.style.width = s.style.height = sz+"px";
                         s.style.top = Math.random()*100+"vh"; s.style.left = Math.random()*100+"vw";
                         s.style.setProperty('--t', (Math.random()*3+2)+"s");
                         layer.appendChild(s);
                     }
-                    // 20 corazones latiendo en la carta
-                    for(let i=0; i<20; i++){
-                        let c = document.createElement('div'); c.className = 'corazon-latido';
-                        c.innerText = '❤️'; c.style.left = Math.random()*100+"vw"; 
-                        c.style.top = Math.random()*100+"vh"; layer.appendChild(c);
-                    }
-
-                    // GENERACIÓN DEL JARDÍN RECUPERADO (30 flores)
                     const j = document.getElementById('jardin');
-                    const floresArr = ["🌻", "🌷", "🌹", "🌼", "🌺"];
-                    for(let i=0; i<30; i++) {
+                    for(let i=0; i<15; i++) {
                         let s = document.createElement('span'); s.className = 'flor-jardin';
-                        s.innerText = floresArr[i % floresArr.length];
+                        s.innerText = iconosFlores[i % iconosFlores.length];
                         j.appendChild(s);
                     }
-
-                    // Fugaces en la carta
-                    setInterval(() => lanzarRafagaEstrellas(layer), 3000); 
+                    setInterval(() => lanzarRafagaEstrellas(layer), 4000); 
                     setTimeout(() => document.getElementById('portada').style.opacity = 1, 100);
-                }, 1500);
+                }, 1000);
             }
         }
 
-        // LÓGICA FOTOS POLAROIDS RECUPERADA
         function lanzarPolaroid(src, step) {
             const f = document.createElement('div'); f.className = 'foto-polaroid';
             f.innerHTML = `<img src="${src}">`;
-            f.style.left = step % 2 == 0 ? "10%" : "70%"; f.style.top = "20%";
-            const r = Math.random()*20-10; f.style.setProperty('--r', r+"deg");
+            f.style.left = "50%"; f.style.top = "30%"; f.style.marginLeft = "-90px";
+            const r = Math.random()*10-5; f.style.setProperty('--r', r+"deg");
             document.body.appendChild(f);
             setTimeout(() => f.classList.add('active'), 100);
-            // Desaparecer después de un tiempo
-            setTimeout(() => { f.classList.remove('active'); setTimeout(()=>f.remove(), 2000); }, 6000);
+            setTimeout(() => { f.classList.remove('active'); setTimeout(()=>f.remove(), 2000); }, 5000);
         }
 
         function iniciar() {
             document.getElementById('portada').style.opacity = 0;
-            const audio = document.getElementById('musica');
-            audio.play();
-            
-            // Lógica de subtítulos sincronizados
+            const audio = document.getElementById('musica'); audio.play();
             audio.ontimeupdate = () => {
                 const ct = audio.currentTime;
                 const sub = guionSubtitulos.find((s, idx) => ct >= s.t && (idx === guionSubtitulos.length-1 || ct < guionSubtitulos[idx+1].t));
                 const el = document.getElementById('subtitulos');
-                if (sub && sub.s !== "") { el.innerText = sub.s; el.style.opacity = 1; } else { el.style.opacity = 0; }
+                if (sub) { el.innerText = sub.s; el.style.opacity = 1; } else { el.style.opacity = 0; }
             };
 
             setTimeout(() => {
                 document.getElementById('portada').style.display = 'none';
                 document.getElementById('main-container').style.opacity = 1;
-                document.getElementById('titulo-universo').style.opacity = 0.95;
+                document.getElementById('titulo-universo').style.opacity = 1;
                 
-                // Generar 700 estrellas fijas universo
                 const sLayer = document.getElementById('stars-layer');
-                for(let i=0; i<700; i++) {
+                for(let i=0; i<300; i++) {
                     let s = document.createElement('div'); s.className = 'star';
-                    let sz = Math.random()*3; s.style.width = s.style.height = sz+"px";
+                    s.style.width = s.style.height = "1px";
                     s.style.top = Math.random()*100+"vh"; s.style.left = Math.random()*100+"vw";
-                    s.style.setProperty('--t', (Math.random()*3+2)+"s");
                     sLayer.appendChild(s);
                 }
-                // Fugaces universo
                 setInterval(() => lanzarRafagaEstrellas(document.getElementById('shooting-stars-layer')), 3000);
 
                 const canv = document.getElementById('canvas');
-                // Planetas al 100%
                 planetasData.forEach(p => {
                     let orb = document.createElement('div'); orb.className = 'orbita-visual';
                     orb.style.width = orb.style.height = (p.d*2)+"px";
@@ -380,104 +294,76 @@
                     let mov = document.createElement('div'); mov.className = 'astro-mover';
                     mov.style.setProperty('--dist', p.d+"px"); mov.style.animationDuration = p.v+"s";
                     let html = `<div class="planeta-body" onclick="hablar('${p.f}')" style="width:${p.t}px; height:${p.t}px; background:${p.c}">`;
-                    if(p.l) html += `<div class="luna-sistema"><div class="luna-body" onclick="event.stopPropagation(); hablar('Te amo en pasitos de hormiguitas de aquí a la luna ❤️🦋')"></div></div>`;
-                    if(p.a) html += `<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotateX(75deg); border:14px solid rgba(255,255,255,0.18); border-radius:50%; width:${p.t*2.3}px; height:${p.t*2.3}px;"></div>`;
-                    html += `</div><span class="label-planeta" style="position:absolute; top:${p.t+15}px; left:50%; transform:translateX(-50%)">${p.n}</span>`;
+                    if(p.l) html += `<div class="luna-sistema"><div class="luna-body"></div></div>`;
+                    if(p.a) html += `<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotateX(70deg); border:2px solid rgba(255,255,255,0.2); border-radius:50%; width:${p.t*2}px; height:${p.t*2}px;"></div>`;
+                    html += `</div><span class="label-planeta" style="position:absolute; top:${p.t+5}px; left:50%; transform:translateX(-50%)">${p.n}</span>`;
                     mov.innerHTML = html;
                     canv.appendChild(mov);
                 });
 
-                // Flores Espaciales al 100% (60 unidades)
-                for(let i=0; i<60; i++) {
+                for(let i=0; i<20; i++) {
                     let f = document.createElement('div'); f.className = 'flor-espacial';
-                    f.style.setProperty('--dist', (250 + Math.random()*1100)+"px");
-                    f.style.animationDuration = (30 + Math.random()*50)+"s";
+                    f.style.setProperty('--dist', (120 + Math.random()*400)+"px");
+                    f.style.animationDuration = (20 + Math.random()*30)+"s";
                     f.innerHTML = `<span class="frase-flotante">${frasesFlores[i%frasesFlores.length]}</span><span class="flor-icono">${iconosFlores[i%iconosFlores.length]}</span>`;
                     canv.appendChild(f);
                 }
 
-                // Cinturón de Meteoritos al 100% (350 unidades)
-                for(let i=0; i<350; i++) {
-                    let m = document.createElement('div'); m.className = 'meteorito-cinturon';
-                    let dist = i<150 ? (430+Math.random()*70) : (1250+Math.random()*220);
-                    let sz = Math.random()*4; m.style.width = m.style.height = sz+"px";
-                    m.style.setProperty('--dist', dist+"px");
-                    m.style.animationDuration = (25+Math.random()*40)+"s";
-                    canv.appendChild(m);
-                }
-
                 iniciarHistoria();
                 iniciarCamara();
-                cicloMeteorito();
                 lluviaCorazones();
-            }, 2500);
+            }, 2000);
         }
 
         function hablar(t) {
             const c = document.getElementById('caja'); c.innerText = t;
-            c.style.opacity = 1; setTimeout(() => c.style.opacity = 0, 4500);
+            c.style.opacity = 1; setTimeout(() => c.style.opacity = 0, 4000);
         }
 
-        function cicloMeteorito() {
-            const m = document.getElementById('meteorito-gigante');
-            m.classList.add('vuelo');
-            setTimeout(() => { m.classList.remove('vuelo'); setTimeout(cicloMeteorito, 30000); }, 18500);
-        }
-
-        // --- MODIFICADO: LLUVIA DE CORAZONES CON TEXTO TE AMO ---
         function lluviaCorazones() {
-            for(let i=0; i<20; i++) {
+            for(let i=0; i<10; i++) {
                 setTimeout(() => {
                     let c = document.createElement('div'); c.className = 'corazon-caida';
-                    // NUEVO ESTRUCTURA HTML: Icono + Texto
-                    c.innerHTML = `
-                        <div class="corazon-caida-icono">❤️</div>
-                        <div class="corazon-caida-texto">te amo</div>
-                    `;
+                    c.innerHTML = `<div class="corazon-caida-icono">❤️</div><div class="corazon-caida-texto">te amo</div>`;
                     c.style.left = Math.random()*100+"vw";
-                    c.style.animationDuration = (Math.random()*3+6)+"s";
+                    c.style.animationDuration = (Math.random()*2+4)+"s";
                     document.body.appendChild(c);
-                    // Limpieza para no saturar
-                    setTimeout(() => c.remove(), 9000);
-                }, i*400);
+                    setTimeout(() => c.remove(), 6000);
+                }, i*600);
             }
-            // Repetir ciclo cada minuto
-            setTimeout(lluviaCorazones, 60000);
+            setTimeout(lluviaCorazones, 30000);
         }
 
-        // GUION HISTORIA RECUPERADO CON FOTOS
         let step = 0;
         const guionHistoria = [
-            { t: "Todo comenzó de una forma que ni yo esperaba...", d: 5000 },
-            { t: "Un simple juego hace 5 años... encontré a mi todo.", d: 5500, f: "foto1.jpeg" },
-            { t: "Aquel 15 de marzo... aceptaste ser mi novia. 💖", d: 5500, f: "foto2.jpeg" },
-            { t: "Pasamos por mucho, pero la distancia no pudo con nosotros.", d: 6000, f: "foto3.jpeg" },
-            { t: "31 de diciembre de 2024. Por fin te tuve frente a mí. 😍", d: 7500, f: "foto4.jpeg" },
-            { t: "Eres mi vida entera, Carla. Siempre lo serás. 🌻", d: 5500, f: "foto5.jpeg", final:true }
+            { t: "Todo comenzó hace 5 años...", d: 5000 },
+            { t: "Un simple juego me llevó a ti.", d: 5000, f: "foto1.jpeg" },
+            { t: "Aquel 15 de marzo fue especial. 💖", d: 5000, f: "foto2.jpeg" },
+            { t: "La distancia no nos detuvo.", d: 5000, f: "foto3.jpeg" },
+            { t: "31 de diciembre de 2024: el mejor día. 😍", d: 6000, f: "foto4.jpeg" },
+            { t: "Eres mi vida entera, Carla. 🌻", d: 5000, f: "foto5.jpeg" }
         ];
 
         function iniciarHistoria() {
             if(step >= guionHistoria.length) return;
             let item = guionHistoria[step];
             hablar(item.t);
-            // Lanzar foto si existe en este paso
             if(item.f) lanzarPolaroid(item.f, step);
-            setTimeout(() => { step++; if(item.final) document.getElementById('sol').classList.add('anim-latido'); else iniciarHistoria(); }, item.d + 1500);
+            setTimeout(() => { step++; iniciarHistoria(); }, item.d + 1000);
         }
 
         let zoom = 1, rx = 0, ry = 0;
         function iniciarCamara() {
-            window.addEventListener('wheel', e => { zoom = e.deltaY>0 ? zoom/1.1 : zoom*1.1; act(); }, {passive:false});
-            let d = false, lx, ly;
-            window.addEventListener('mousedown', e => { d=true; lx=e.clientX; ly=e.clientY; });
-            window.addEventListener('mousemove', e => {
+            let lx, ly, d = false;
+            window.addEventListener('touchstart', e => { d=true; lx=e.touches[0].clientX; ly=e.touches[0].clientY; });
+            window.addEventListener('touchmove', e => {
                 if(!d) return;
-                ry += (e.clientX-lx)*0.15; rx -= (e.clientY-ly)*0.15;
-                lx=e.clientX; ly=e.clientY; act();
+                ry += (e.touches[0].clientX-lx)*0.3; rx -= (e.touches[0].clientY-ly)*0.3;
+                lx=e.touches[0].clientX; ly=e.touches[0].clientY; act();
             });
-            window.addEventListener('mouseup', () => d=false);
+            window.addEventListener('touchend', () => d=false);
         }
-        function act() { document.getElementById('canvas').style.transform = `scale(${zoom}) rotateX(${rx}deg) rotateY(${ry}deg) translate3d(0,0,0)`; }
+        function act() { document.getElementById('canvas').style.transform = `scale(${zoom}) rotateX(${rx}deg) rotateY(${ry}deg)`; }
     </script>
 </body>
 </html>
